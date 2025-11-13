@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,12 +13,14 @@ public class GroundScript : MonoBehaviour
     public void OnCollisionEnter(Collision collision)
     {
         // Solution over reference
-        if (collision.gameObject == player) { 
+        if (collision.gameObject == player)
+        {
             GameObject.Destroy(player);
             player = null;
             SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
+            StartCoroutine(RestartLevel());
         }
-        
+
         // Solution over Tag
         if (collision.gameObject.tag == "Player")
         {
@@ -29,8 +32,12 @@ public class GroundScript : MonoBehaviour
         {
             GameObject.Destroy(player);
         }
-
-
+    }
+    
+    private IEnumerator RestartLevel()
+    {
+        yield return new WaitForSeconds(3f); // Wait 3 seconds
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
 
