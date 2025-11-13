@@ -7,7 +7,9 @@ public class PlayerScript : MonoBehaviour
 
     private Animator animator;
     // Update is called once per frame
-    
+
+
+ 
     void Awake()
     {
         animator = this.GetComponent<Animator>();
@@ -40,7 +42,6 @@ public class PlayerScript : MonoBehaviour
         if (Physics.Raycast(ray, out hit, maxDistance))
         {
             grounded = true;
-            Debug.Log("I hit something " + hit.collider.name);
         }
 
         if (Input.GetButtonDown("Jump") && grounded)
@@ -48,8 +49,7 @@ public class PlayerScript : MonoBehaviour
             this.GetComponent<Rigidbody>().AddForce(Vector3.up * JumpForce);
             animator.SetTrigger("jump");
         }
-
-  
-
     }
+
+   
 }

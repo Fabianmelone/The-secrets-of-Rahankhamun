@@ -34,7 +34,7 @@ public class PlayerScriptAdvanced : MonoBehaviour
         if (Physics.Raycast(ray, out hit, maxDistance))
         {
             grounded = true;
-            Debug.Log("I hit something " + hit.collider.name);
+            // Debug.Log("I hit something " + hit.collider.name);
         }
 
         if (Input.GetButtonDown("Jump") && grounded)
